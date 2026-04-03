@@ -1003,3 +1003,147 @@ body {
     content: "";
   }
 }
+
+/* ----------------------------------------------------------
+   Lightbox
+   ---------------------------------------------------------- */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 6, 30, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 0 60px rgba(201, 168, 76, 0.3);
+  border: 2px solid rgba(201, 168, 76, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.lightbox-overlay.active img {
+  transform: scale(1);
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: rgba(201, 168, 76, 0.15);
+  border-radius: 50%;
+  color: var(--gold);
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-close:hover {
+  background: rgba(201, 168, 76, 0.3);
+}
+.lightbox-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--light-gold);
+  font-family: 'Merriweather', serif;
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 80vw;
+  opacity: 0.85;
+}
+
+/* Clickable images */
+img.clickable-img {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+img.clickable-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.25);
+}
+
+/* ----------------------------------------------------------
+   Quest Item Cards with Images
+   ---------------------------------------------------------- */
+.quest-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  background: rgba(15, 27, 61, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  width: 110px;
+  text-align: center;
+}
+.quest-item-card:hover {
+  border-color: rgba(201, 168, 76, 0.5);
+  box-shadow: 0 0 16px rgba(201, 168, 76, 0.15);
+  transform: translateY(-3px);
+}
+.quest-item-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+.quest-item-card span {
+  font-size: 0.65rem;
+  color: var(--light-gold);
+  line-height: 1.2;
+}
+
+/* ----------------------------------------------------------
+   GM Script Styling
+   ---------------------------------------------------------- */
+.gm-script {
+  background: linear-gradient(135deg, rgba(74, 45, 138, 0.3), rgba(15, 27, 61, 0.4));
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+}
+.gm-script-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Merriweather', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  background: rgba(201, 168, 76, 0.1);
+  border-radius: 4px;
+}
+.gm-script blockquote {
+  border-left: 3px solid rgba(201, 168, 76, 0.4);
+  padding-left: 16px;
+  margin: 8px 0;
+  font-style: italic;
+  color: rgba(253, 245, 230, 0.8);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}

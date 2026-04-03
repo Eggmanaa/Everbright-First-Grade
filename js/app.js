@@ -725,4 +725,52 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ====================================================
+  // 16. LIGHTBOX
+  // ====================================================
+  (function initLightbox() {
+    // Create lightbox overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img src="" alt=""><div class="lightbox-caption"></div>';
+    document.body.appendChild(overlay);
+
+    const lbImg = overlay.querySelector('img');
+    const lbCaption = overlay.querySelector('.lightbox-caption');
+    const lbClose = overlay.querySelector('.lightbox-close');
+
+    function openLightbox(src, alt) {
+      lbImg.src = src;
+      lbCaption.textContent = alt || '';
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+
+    // Make all content images clickable
+    document.querySelectorAll('section img, .character-card img, .quest-item-card img').forEach(function(img) {
+      // Skip tiny icons (nav logo, etc)
+      if (img.width < 40 && img.height < 40) return;
+      img.classList.add('clickable-img');
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function() {
+        openLightbox(this.src, this.alt);
+      });
+    });
+  })();
 });
