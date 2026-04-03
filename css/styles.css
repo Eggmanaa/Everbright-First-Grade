@@ -1641,6 +1641,17 @@ section {
     0 0 20px rgba(201, 168, 76, 0.25),
     0 0 40px rgba(201, 168, 76, 0.1);
 }
+/* Quest Item Subject Badge */
+.item-subject {
+  display: block;
+  font-size: 0.6rem;
+  color: rgba(201, 168, 76, 0.7);
+  margin-top: 2px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .guide-video-card video {
   border-bottom: 1px solid rgba(201, 168, 76, 0.2);
 }
