@@ -1,0 +1,1005 @@
+/* ============================================================
+   THE LOST STAR MAP - Kingdom of Everbright
+   First-Grade Gameschooling Curriculum
+   Custom Styles (companion to Tailwind CSS)
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   CSS Custom Properties
+   ---------------------------------------------------------- */
+:root {
+  --deep-purple: #2D1B69;
+  --gold: #C9A84C;
+  --midnight-blue: #0F1B3D;
+  --cream: #FDF5E6;
+  --silver: #C0C0C0;
+  --pale-blue: #B8D4E3;
+  --dark-purple: #1A0F3C;
+  --warm-purple: #4A2D8A;
+  --light-gold: #E8D5A3;
+
+  /* Subject colors */
+  --subject-language-arts: #4A90D9;
+  --subject-math: #5BA55B;
+  --subject-science: #E8943A;
+  --subject-history: #C94C4C;
+  --subject-listening: #8B5CF6;
+
+  /* Shared timing */
+  --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ----------------------------------------------------------
+   1. Global & Smooth Scrolling
+   ---------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--warm-purple) var(--dark-purple);
+  scrollbar-width: thin;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--dark-purple);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--dark-purple);
+}
+
+
+/* ----------------------------------------------------------
+   2. Star Field Animation (Hero Section)
+   ---------------------------------------------------------- */
+.star-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Layer 1 - small, fast stars */
+.star-field::before,
+.star-field::after,
+.star-layer-3 {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: twinkle-drift 80s linear infinite;
+}
+
+.star-field::before {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    25px 30px #fff, 80px 120px #fff, 160px 60px #fff, 230px 180px #fff,
+    310px 45px #fff, 400px 200px #fff, 475px 90px #fff, 550px 160px #fff,
+    620px 30px #fff, 700px 220px #fff, 780px 75px #fff, 860px 190px #fff,
+    940px 40px #fff, 1020px 150px #fff, 1100px 80px #fff, 1180px 210px #fff,
+    50px 250px #fff, 130px 300px #fff, 210px 350px #fff, 290px 270px #fff,
+    370px 320px #fff, 450px 380px #fff, 530px 260px #fff, 610px 340px #fff,
+    690px 290px #fff, 770px 370px #fff, 850px 310px #fff, 930px 360px #fff,
+    35px 420px #fff, 115px 480px #fff, 200px 440px #fff, 280px 500px #fff,
+    360px 460px #fff, 440px 520px #fff, 525px 430px #fff, 605px 490px #fff,
+    685px 450px #fff, 765px 510px #fff, 845px 470px #fff, 925px 530px #fff,
+    1010px 410px #fff, 1090px 475px #fff, 1170px 520px #fff, 1250px 440px #fff,
+    60px 560px #fff, 140px 610px #fff, 225px 580px #fff, 305px 640px #fff,
+    385px 570px #fff, 465px 630px #fff, 545px 590px #fff, 635px 560px #fff,
+    715px 620px #fff, 795px 580px #fff, 875px 640px #fff, 955px 600px #fff,
+    1035px 560px #fff, 1115px 630px #fff, 1200px 590px #fff, 45px 680px #fff,
+    125px 720px #fff, 215px 700px #fff, 295px 740px #fff, 375px 710px #fff,
+    455px 760px #fff, 540px 690px #fff, 625px 730px #fff, 705px 760px #fff,
+    785px 700px #fff, 865px 750px #fff, 950px 720px #fff, 1030px 760px #fff;
+  animation: twinkle-1 4s ease-in-out infinite alternate,
+             twinkle-drift 120s linear infinite;
+}
+
+/* Layer 2 - medium stars */
+.star-field::after {
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    45px 80px var(--pale-blue), 180px 200px var(--pale-blue),
+    320px 130px #fff, 460px 280px var(--pale-blue),
+    600px 60px #fff, 740px 310px var(--pale-blue),
+    880px 170px #fff, 1020px 260px var(--pale-blue),
+    90px 340px #fff, 250px 420px var(--pale-blue),
+    390px 380px #fff, 530px 450px var(--pale-blue),
+    670px 400px #fff, 810px 480px var(--pale-blue),
+    950px 350px #fff, 1100px 440px var(--pale-blue),
+    65px 550px #fff, 200px 620px var(--pale-blue),
+    340px 580px #fff, 480px 640px var(--pale-blue),
+    620px 560px #fff, 760px 650px var(--pale-blue),
+    900px 590px #fff, 1040px 630px var(--pale-blue),
+    110px 710px #fff, 270px 680px var(--pale-blue),
+    410px 740px #fff, 560px 700px var(--pale-blue),
+    700px 750px #fff, 840px 720px var(--pale-blue);
+  animation: twinkle-2 6s ease-in-out infinite alternate,
+             twinkle-drift 180s linear infinite;
+}
+
+/* Layer 3 - large, bright accent stars */
+.star-layer-3 {
+  width: 3px;
+  height: 3px;
+  box-shadow:
+    100px 100px var(--gold), 350px 250px var(--light-gold),
+    600px 150px var(--gold), 850px 300px var(--light-gold),
+    200px 450px var(--gold), 500px 350px var(--light-gold),
+    750px 500px var(--gold), 1000px 200px var(--light-gold),
+    150px 600px var(--gold), 450px 550px var(--light-gold),
+    700px 650px var(--gold), 950px 480px var(--light-gold),
+    300px 700px var(--gold), 550px 720px var(--light-gold);
+  animation: twinkle-3 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle-1 {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes twinkle-2 {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 0.9; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes twinkle-3 {
+  0%   { opacity: 0.5; transform: scale(1); }
+  50%  { opacity: 1; transform: scale(1.4); }
+  100% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes twinkle-drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100px); }
+}
+
+
+/* ----------------------------------------------------------
+   3. Navigation - Glassmorphism & Scroll State
+   ---------------------------------------------------------- */
+.nav-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  transition: background var(--transition-smooth),
+              backdrop-filter var(--transition-smooth),
+              box-shadow var(--transition-smooth),
+              padding var(--transition-smooth);
+  background: rgba(26, 15, 60, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.nav-main.nav-scrolled {
+  background: rgba(26, 15, 60, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(201, 168, 76, 0.25);
+  padding: 0.6rem 2rem;
+}
+
+.nav-main a {
+  transition: color var(--transition-smooth), text-shadow var(--transition-smooth);
+}
+
+.nav-main a:hover {
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.5);
+}
+
+
+/* ----------------------------------------------------------
+   4. Constellation Glow Effects
+   ---------------------------------------------------------- */
+.constellation-glow {
+  animation: constellation-pulse 3s ease-in-out infinite;
+}
+
+@keyframes constellation-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(201, 168, 76, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(201, 168, 76, 0.9))
+           drop-shadow(0 0 30px rgba(201, 168, 76, 0.4));
+  }
+}
+
+.constellation-line {
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  opacity: 0.6;
+  animation: line-glow 4s ease-in-out infinite;
+}
+
+@keyframes line-glow {
+  0%, 100% { opacity: 0.4; stroke-width: 1.5; }
+  50%      { opacity: 0.9; stroke-width: 2; }
+}
+
+.constellation-star {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 6px var(--gold));
+  animation: star-breathe 2.5s ease-in-out infinite;
+}
+
+@keyframes star-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%      { transform: scale(1.3); opacity: 1; }
+}
+
+
+/* ----------------------------------------------------------
+   5. Mission Accordion
+   ---------------------------------------------------------- */
+.mission-accordion {
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: border-color var(--transition-smooth),
+              box-shadow var(--transition-smooth);
+}
+
+.mission-accordion:hover {
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+.mission-accordion-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(45, 27, 105, 0.06), rgba(74, 45, 138, 0.04));
+  transition: background var(--transition-smooth);
+  user-select: none;
+}
+
+.mission-accordion-header:hover {
+  background: linear-gradient(135deg, rgba(45, 27, 105, 0.12), rgba(74, 45, 138, 0.08));
+}
+
+.mission-accordion-chevron {
+  transition: transform var(--transition-smooth);
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.mission-accordion.open .mission-accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.mission-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.3s ease;
+  padding: 0 1.5rem;
+}
+
+.mission-accordion.open .mission-accordion-body {
+  max-height: 2000px;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+
+/* ----------------------------------------------------------
+   6. Quest Item Cards
+   ---------------------------------------------------------- */
+.quest-card {
+  position: relative;
+  border-radius: 1rem;
+  transition: transform var(--transition-smooth),
+              box-shadow var(--transition-smooth);
+  animation: quest-float 6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.quest-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 8px 30px rgba(201, 168, 76, 0.25),
+    0 0 0 1px rgba(201, 168, 76, 0.3),
+    inset 0 1px 0 rgba(201, 168, 76, 0.15);
+  animation-play-state: running;
+}
+
+@keyframes quest-float {
+  0%, 100% { transform: translateY(-6px); }
+  50%      { transform: translateY(-12px); }
+}
+
+.quest-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--gold), transparent 50%, var(--gold));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+  pointer-events: none;
+}
+
+.quest-card:hover::before {
+  opacity: 1;
+}
+
+
+/* ----------------------------------------------------------
+   7. Character Cards
+   ---------------------------------------------------------- */
+.character-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform var(--transition-smooth),
+              box-shadow var(--transition-smooth);
+}
+
+.character-card:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 20px rgba(201, 168, 76, 0.3),
+    0 0 40px rgba(201, 168, 76, 0.1),
+    0 0 0 2px var(--gold);
+}
+
+.character-card-img {
+  overflow: hidden;
+}
+
+.character-card-img img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.character-card:hover .character-card-img img {
+  transform: scale(1.1);
+}
+
+.character-card-name {
+  transition: color var(--transition-smooth), text-shadow var(--transition-smooth);
+}
+
+.character-card:hover .character-card-name {
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.4);
+}
+
+
+/* ----------------------------------------------------------
+   8. Progress Tracker - Constellation Dots
+   ---------------------------------------------------------- */
+.progress-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--silver);
+  opacity: 0.35;
+  border: 2px solid rgba(192, 192, 192, 0.3);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-dot.lit {
+  background: var(--gold);
+  opacity: 1;
+  border-color: var(--gold);
+  box-shadow:
+    0 0 8px rgba(201, 168, 76, 0.6),
+    0 0 20px rgba(201, 168, 76, 0.3),
+    0 0 40px rgba(201, 168, 76, 0.1);
+  animation: dot-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes dot-glow {
+  0%   { box-shadow: 0 0 8px rgba(201, 168, 76, 0.6), 0 0 20px rgba(201, 168, 76, 0.3); }
+  100% { box-shadow: 0 0 12px rgba(201, 168, 76, 0.9), 0 0 30px rgba(201, 168, 76, 0.5); }
+}
+
+.progress-line {
+  height: 2px;
+  background: rgba(192, 192, 192, 0.2);
+  flex: 1;
+  transition: background 0.5s ease;
+}
+
+.progress-line.lit {
+  background: linear-gradient(90deg, var(--gold), var(--light-gold));
+  box-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
+}
+
+
+/* ----------------------------------------------------------
+   9. Section Dividers - Golden Ornamental Lines
+   ---------------------------------------------------------- */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+.section-divider-icon {
+  color: var(--gold);
+  font-size: 1.25rem;
+  text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+  animation: divider-sparkle 3s ease-in-out infinite;
+}
+
+@keyframes divider-sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+
+
+/* ----------------------------------------------------------
+   10. Parchment Texture Overlay
+   ---------------------------------------------------------- */
+.parchment {
+  position: relative;
+  background-color: var(--cream);
+}
+
+.parchment::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/parchment-texture.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+
+.parchment > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ----------------------------------------------------------
+   11. Scroll-Triggered Fade-In Animations
+   ---------------------------------------------------------- */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+.fade-in-section.is-visible .fade-child:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-section.is-visible .fade-child:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-section.is-visible .fade-child:nth-child(3) { transition-delay: 0.3s; }
+.fade-in-section.is-visible .fade-child:nth-child(4) { transition-delay: 0.4s; }
+.fade-in-section.is-visible .fade-child:nth-child(5) { transition-delay: 0.5s; }
+.fade-in-section.is-visible .fade-child:nth-child(6) { transition-delay: 0.6s; }
+
+.fade-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible .fade-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ----------------------------------------------------------
+   12. Custom Scrollbar
+   ---------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-purple);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--warm-purple), var(--deep-purple));
+  border-radius: 5px;
+  border: 2px solid var(--dark-purple);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--gold), var(--warm-purple));
+}
+
+
+/* ----------------------------------------------------------
+   13. SVG Constellation Map - Hover & Active States
+   ---------------------------------------------------------- */
+.constellation-map {
+  cursor: pointer;
+}
+
+.constellation-map .star-node {
+  fill: var(--silver);
+  stroke: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.constellation-map .star-node:hover {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 8px var(--gold));
+  transform-origin: center;
+  r: 6;
+}
+
+.constellation-map .star-node.active {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 12px var(--gold))
+         drop-shadow(0 0 24px rgba(201, 168, 76, 0.5));
+  animation: active-star 2s ease-in-out infinite;
+}
+
+@keyframes active-star {
+  0%, 100% { filter: drop-shadow(0 0 12px var(--gold)); }
+  50%      { filter: drop-shadow(0 0 20px var(--gold)) drop-shadow(0 0 40px rgba(201, 168, 76, 0.6)); }
+}
+
+.constellation-map .edge {
+  stroke: rgba(192, 192, 192, 0.2);
+  stroke-width: 1;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+.constellation-map .edge.active {
+  stroke: var(--gold);
+  stroke-width: 2;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 4px rgba(201, 168, 76, 0.5));
+}
+
+.constellation-map .region:hover .edge {
+  stroke: var(--pale-blue);
+  stroke-width: 1.5;
+}
+
+.constellation-map .region:hover .star-node {
+  fill: var(--pale-blue);
+  filter: drop-shadow(0 0 6px var(--pale-blue));
+}
+
+.constellation-map .label {
+  fill: var(--cream);
+  font-size: 0.7rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.constellation-map .region:hover .label {
+  opacity: 1;
+}
+
+
+/* ----------------------------------------------------------
+   14. Loading Animation - Golden Stars
+   ---------------------------------------------------------- */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, var(--deep-purple) 0%, var(--dark-purple) 100%);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-stars {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.loading-star {
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  );
+  animation: loading-bounce 1.4s ease-in-out infinite;
+}
+
+.loading-star:nth-child(1) { animation-delay: 0s; }
+.loading-star:nth-child(2) { animation-delay: 0.15s; }
+.loading-star:nth-child(3) { animation-delay: 0.3s; }
+.loading-star:nth-child(4) { animation-delay: 0.45s; }
+.loading-star:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes loading-bounce {
+  0%, 100% {
+    transform: scale(0.6) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2) rotate(20deg);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.7);
+  }
+}
+
+.loading-text {
+  color: var(--light-gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: loading-fade 2s ease-in-out infinite;
+}
+
+@keyframes loading-fade {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+
+/* ----------------------------------------------------------
+   15. Tooltips for Quest Items
+   ---------------------------------------------------------- */
+.quest-tooltip {
+  position: relative;
+}
+
+.quest-tooltip .tooltip-content {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: linear-gradient(135deg, var(--dark-purple), var(--deep-purple));
+  color: var(--cream);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.quest-tooltip .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--deep-purple);
+}
+
+.quest-tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ----------------------------------------------------------
+   16. Subject Color Coding
+   ---------------------------------------------------------- */
+.subject-language-arts { border-left: 4px solid var(--subject-language-arts); }
+.subject-math          { border-left: 4px solid var(--subject-math); }
+.subject-science       { border-left: 4px solid var(--subject-science); }
+.subject-history       { border-left: 4px solid var(--subject-history); }
+.subject-listening     { border-left: 4px solid var(--subject-listening); }
+
+.subject-badge-language-arts {
+  background-color: rgba(74, 144, 217, 0.15);
+  color: var(--subject-language-arts);
+  border: 1px solid rgba(74, 144, 217, 0.3);
+}
+
+.subject-badge-math {
+  background-color: rgba(91, 165, 91, 0.15);
+  color: var(--subject-math);
+  border: 1px solid rgba(91, 165, 91, 0.3);
+}
+
+.subject-badge-science {
+  background-color: rgba(232, 148, 58, 0.15);
+  color: var(--subject-science);
+  border: 1px solid rgba(232, 148, 58, 0.3);
+}
+
+.subject-badge-history {
+  background-color: rgba(201, 76, 76, 0.15);
+  color: var(--subject-history);
+  border: 1px solid rgba(201, 76, 76, 0.3);
+}
+
+.subject-badge-listening {
+  background-color: rgba(139, 92, 246, 0.15);
+  color: var(--subject-listening);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.subject-badge-language-arts,
+.subject-badge-math,
+.subject-badge-science,
+.subject-badge-history,
+.subject-badge-listening {
+  display: inline-block;
+  padding: 0.2em 0.65em;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Subject dot indicators */
+.subject-dot-language-arts { background-color: var(--subject-language-arts); }
+.subject-dot-math          { background-color: var(--subject-math); }
+.subject-dot-science       { background-color: var(--subject-science); }
+.subject-dot-history       { background-color: var(--subject-history); }
+.subject-dot-listening     { background-color: var(--subject-listening); }
+
+
+/* ----------------------------------------------------------
+   17. Responsive Adjustments (beyond Tailwind)
+   ---------------------------------------------------------- */
+@media (max-width: 640px) {
+  .nav-main {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-main.nav-scrolled {
+    padding: 0.5rem 1rem;
+  }
+
+  .star-field::before,
+  .star-field::after {
+    animation-duration: 60s;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    max-width: 80px;
+  }
+
+  .quest-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .tooltip-content {
+    white-space: normal;
+    min-width: 200px;
+    max-width: 260px;
+  }
+
+  .loading-star {
+    width: 12px;
+    height: 12px;
+  }
+
+  .progress-dot {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .constellation-map .label {
+    font-size: 0.6rem;
+  }
+
+  .mission-accordion-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .mission-accordion.open .mission-accordion-body {
+    padding: 0.75rem 1rem 1rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .star-field::before {
+    box-shadow:
+      25px 30px #fff, 80px 120px #fff, 160px 60px #fff, 230px 180px #fff,
+      310px 45px #fff, 400px 200px #fff, 475px 90px #fff, 550px 160px #fff,
+      620px 30px #fff, 700px 220px #fff, 780px 75px #fff, 860px 190px #fff,
+      940px 40px #fff, 1020px 150px #fff, 1100px 80px #fff, 1180px 210px #fff,
+      1300px 50px #fff, 1420px 140px #fff, 1540px 90px #fff,
+      50px 250px #fff, 130px 300px #fff, 210px 350px #fff, 290px 270px #fff,
+      370px 320px #fff, 450px 380px #fff, 530px 260px #fff, 610px 340px #fff,
+      690px 290px #fff, 770px 370px #fff, 850px 310px #fff, 930px 360px #fff,
+      1050px 280px #fff, 1200px 330px #fff, 1350px 370px #fff, 1500px 290px #fff,
+      35px 420px #fff, 115px 480px #fff, 200px 440px #fff, 280px 500px #fff,
+      360px 460px #fff, 440px 520px #fff, 525px 430px #fff, 605px 490px #fff,
+      685px 450px #fff, 765px 510px #fff, 845px 470px #fff, 925px 530px #fff,
+      1010px 410px #fff, 1090px 475px #fff, 1170px 520px #fff, 1250px 440px #fff,
+      1380px 460px #fff, 1500px 500px #fff;
+  }
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in-section {
+    opacity: 1;
+    transform: none;
+  }
+
+  .fade-child {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   18. Print Styles
+   ---------------------------------------------------------- */
+@media print {
+  /* Hide non-essential elements */
+  .nav-main,
+  .star-field,
+  .star-layer-3,
+  .loading-overlay,
+  .section-divider-icon,
+  .progress-dot,
+  .progress-line,
+  .constellation-map {
+    display: none !important;
+  }
+
+  /* Reset backgrounds for ink saving */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .parchment::before {
+    display: none !important;
+  }
+
+  /* Remove animations and transforms */
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Clean mission formatting */
+  .mission-accordion {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .mission-accordion-body {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .mission-accordion-chevron {
+    display: none;
+  }
+
+  /* Quest and character cards */
+  .quest-card,
+  .character-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #ccc;
+    margin-bottom: 0.5rem;
+  }
+
+  .quest-card::before {
+    display: none;
+  }
+
+  /* Subject badges print-friendly */
+  .subject-badge-language-arts,
+  .subject-badge-math,
+  .subject-badge-science,
+  .subject-badge-history,
+  .subject-badge-listening {
+    border: 1px solid currentColor;
+    background: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Section dividers simplified */
+  .section-divider::before,
+  .section-divider::after {
+    background: #999;
+  }
+
+  /* Fade-in sections visible */
+  .fade-in-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Tooltips hidden */
+  .tooltip-content {
+    display: none !important;
+  }
+
+  /* Links show URLs */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: "";
+  }
+}
