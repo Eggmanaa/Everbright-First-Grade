@@ -242,8 +242,21 @@ body {
 
 
 /* ----------------------------------------------------------
-   5. Mission Accordion
+   5. Mission Accordion (HTML class: mission-panel/trigger/content)
    ---------------------------------------------------------- */
+.mission-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mission-panel.active .mission-content {
+  max-height: 5000px;
+  overflow: visible;
+}
+.mission-panel.active .mission-chevron {
+  transform: rotate(180deg);
+}
+
 .mission-accordion {
   border: 1px solid rgba(201, 168, 76, 0.25);
   border-radius: 0.75rem;
@@ -1401,4 +1414,230 @@ img.clickable-img:hover {
   border-color: #C9A84C;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(201, 168, 76, 0.15);
+}
+
+/* ----------------------------------------------------------
+   MOBILE OPTIMIZATION
+   ---------------------------------------------------------- */
+
+/* Touch targets - minimum 44px for all interactive elements */
+@media (max-width: 768px) {
+  .mission-trigger {
+    padding: 16px 12px !important;
+    gap: 10px !important;
+  }
+  .mission-trigger img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .mission-chevron {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .nav-link {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+
+  /* Quest items - 2 column on mobile instead of wrapping mess */
+  .quest-item-card {
+    width: calc(50% - 8px) !important;
+    flex-direction: row !important;
+    padding: 6px !important;
+    gap: 8px !important;
+  }
+  .quest-item-card img {
+    width: 50px !important;
+    height: 50px !important;
+    flex-shrink: 0;
+  }
+  .quest-item-card span {
+    text-align: left !important;
+    font-size: 0.65rem !important;
+  }
+
+  /* GM Scripts - more padding on mobile */
+  .gm-script {
+    padding: 14px !important;
+  }
+  .gm-script blockquote {
+    font-size: 0.8rem !important;
+    padding-left: 12px !important;
+  }
+
+  /* Curriculum table - horizontal scroll */
+  .curriculum-table {
+    font-size: 0.75rem;
+  }
+
+  /* Character cards - full width on small screens */
+  .character-card {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .character-card .w-32 {
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto;
+  }
+
+  /* Star map container */
+  #starmap-3d {
+    min-height: 300px !important;
+  }
+
+  /* Hero text sizing */
+  .hero h1 {
+    font-size: 2.5rem !important;
+  }
+
+  /* Guide chat panel mobile */
+  .guide-chat-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+  }
+  .guide-chat-messages {
+    padding: 12px !important;
+  }
+  .guide-msg-bubble {
+    max-width: 85% !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .quest-item-card {
+    width: 100% !important;
+  }
+  .hero h1 {
+    font-size: 2rem !important;
+  }
+  .section-divider {
+    width: 60% !important;
+  }
+}
+
+/* Smooth scrolling on iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  .guide-chat-messages {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Safe area insets for notched phones */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .guide-chat-input-wrap {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  #main-nav {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* ----------------------------------------------------------
+   UX ENHANCEMENTS
+   ---------------------------------------------------------- */
+
+/* Smooth section transitions */
+section {
+  transition: opacity 0.3s ease;
+}
+
+/* Active nav indicator */
+.nav-link.active {
+  color: #C9A84C !important;
+  position: relative;
+}
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: #C9A84C;
+  border-radius: 1px;
+}
+
+/* Mission panel open animation */
+.mission-panel.active {
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.08);
+}
+
+/* Subject card hover lift */
+.border-l-4 {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.border-l-4:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Character card entrance stagger */
+.character-card:nth-child(1) { animation-delay: 0s; }
+.character-card:nth-child(2) { animation-delay: 0.1s; }
+.character-card:nth-child(3) { animation-delay: 0.2s; }
+.character-card:nth-child(4) { animation-delay: 0.3s; }
+.character-card:nth-child(5) { animation-delay: 0.35s; }
+.character-card:nth-child(6) { animation-delay: 0.4s; }
+
+/* Location cards - better hover reveal */
+.group:hover .absolute.bottom-0 {
+  background: linear-gradient(to top, rgba(26, 15, 60, 0.95), rgba(26, 15, 60, 0.5), transparent);
+}
+
+/* Constellation crest image pulse on mission panel open */
+.mission-panel.active .mission-trigger img {
+  animation: crestPulse 2s ease-in-out infinite;
+}
+@keyframes crestPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(201, 168, 76, 0); }
+  50% { box-shadow: 0 0 15px rgba(201, 168, 76, 0.3); }
+}
+
+/* Progress counter animation */
+.progress-counter {
+  transition: all 0.3s ease;
+}
+
+/* Curriculum table row hover */
+.curriculum-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+/* Resource cards lift on hover */
+#resources .bg-dark-purple\\/60:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+/* Keyboard focus visible styles */
+*:focus-visible {
+  outline: 2px solid #C9A84C;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to content link (accessibility) */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background: #C9A84C;
+  color: #1A0F3C;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-to-content:focus {
+  top: 0;
 }
