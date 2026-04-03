@@ -1416,6 +1416,42 @@ img.clickable-img:hover {
   box-shadow: 0 4px 12px rgba(201, 168, 76, 0.15);
 }
 
+/* Choice buttons (choose your own adventure) */
+.guide-chat-choices {
+  padding: 8px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.guide-choice-btn {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  font-family: 'Open Sans', sans-serif;
+  color: #FDF5E6;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(74, 45, 138, 0.15));
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+.guide-choice-btn:hover {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(74, 45, 138, 0.25));
+  border-color: rgba(201, 168, 76, 0.5);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(201, 168, 76, 0.15);
+}
+.guide-choice-btn:active {
+  transform: translateX(2px) scale(0.98);
+}
+.guide-choice-btn::before {
+  content: '\25B6  ';
+  color: var(--guide-color, #C9A84C);
+  font-size: 0.7rem;
+}
+
 /* ----------------------------------------------------------
    MOBILE OPTIMIZATION
    ---------------------------------------------------------- */
