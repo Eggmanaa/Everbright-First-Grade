@@ -1631,6 +1631,20 @@ section {
 .character-card:nth-child(5) { animation-delay: 0.35s; }
 .character-card:nth-child(6) { animation-delay: 0.4s; }
 
+/* Guide Video Cards */
+.guide-video-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.guide-video-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 20px rgba(201, 168, 76, 0.25),
+    0 0 40px rgba(201, 168, 76, 0.1);
+}
+.guide-video-card video {
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+}
+
 /* Location cards - better hover reveal */
 .group:hover .absolute.bottom-0 {
   background: linear-gradient(to top, rgba(26, 15, 60, 0.95), rgba(26, 15, 60, 0.5), transparent);
