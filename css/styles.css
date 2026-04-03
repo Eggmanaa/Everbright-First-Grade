@@ -1155,10 +1155,19 @@ img.clickable-img:hover {
   border-left: 3px solid rgba(201, 168, 76, 0.4);
   padding-left: 16px;
   margin: 8px 0;
-  font-style: italic;
+  font-style: normal;
   color: rgba(253, 245, 230, 0.8);
   font-size: 0.85rem;
-  line-height: 1.7;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+.gm-script blockquote strong {
+  color: #C9A84C;
+  font-weight: 700;
+}
+.gm-script blockquote em {
+  color: rgba(184, 212, 227, 0.7);
+  font-style: italic;
 }
 
 /* ----------------------------------------------------------
@@ -1676,4 +1685,151 @@ section {
 }
 .skip-to-content:focus {
   top: 0;
+}
+
+/* ----------------------------------------------------------
+   Quest Item Tooltips
+   ---------------------------------------------------------- */
+.item-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  padding: 12px;
+  background: linear-gradient(135deg, #1a0f3c, #0f1b3d);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  z-index: 100;
+  pointer-events: none;
+  animation: tooltipFade 0.2s ease;
+}
+@keyframes tooltipFade {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.quest-item-card:hover .item-tooltip {
+  display: block;
+}
+.item-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(201, 168, 76, 0.3);
+}
+.item-tooltip-flavor {
+  font-size: 0.72rem;
+  color: rgba(253, 245, 230, 0.85);
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+.item-tooltip-unlock {
+  font-size: 0.65rem;
+  color: rgba(201, 168, 76, 0.8);
+  line-height: 1.4;
+}
+.item-tooltip-unlock strong {
+  color: #C9A84C;
+}
+.item-day-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  background: rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #C9A84C;
+}
+
+/* Mobile: show tooltip on tap (handled by JS) */
+@media (max-width: 768px) {
+  .item-tooltip {
+    width: 220px;
+    font-size: 0.68rem;
+  }
+}
+
+/* ----------------------------------------------------------
+   Scroll Progress Indicator (side dots)
+   ---------------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.scroll-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.scroll-dot:hover {
+  background: rgba(201, 168, 76, 0.4);
+  transform: scale(1.3);
+}
+.scroll-dot.active {
+  background: #C9A84C;
+  border-color: #C9A84C;
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.4);
+  transform: scale(1.2);
+}
+.scroll-dot-label {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 0.65rem;
+  color: #E8D5A3;
+  background: rgba(26, 15, 60, 0.9);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.scroll-dot:hover .scroll-dot-label {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .scroll-progress {
+    right: 8px;
+    gap: 8px;
+  }
+  .scroll-dot {
+    width: 7px;
+    height: 7px;
+  }
+  .scroll-dot-label {
+    display: none;
+  }
+}
+@media print {
+  .scroll-progress { display: none; }
 }
